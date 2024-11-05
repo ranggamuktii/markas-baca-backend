@@ -3,10 +3,10 @@ import { getBooks, getBookById, addBook, updateBook, deleteBook } from '../contr
 
 const router = express.Router();
 
-router.get('/books', getBooks);
-router.get('/book/:id', getBookById);
-router.post('/book', addBook);
-router.put('/book/:id', updateBook);
-router.delete('/book/:id', deleteBook);
+router.get('/', getBooks);
+router.get('/:id', getBookById);
+router.post('/', addBook);
+router.put('/:id', updateBook);
+router.delete('/:id', deleteBook);
 
 export default router;
