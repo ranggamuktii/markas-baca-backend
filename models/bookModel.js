@@ -5,6 +5,15 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  authorId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'author',
+    required: true,
+  },
+  categoryId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'category',
+  },
   description: {
     type: String,
   },
@@ -26,16 +35,25 @@ const bookSchema = new mongoose.Schema({
   ],
   createdAt: {
     type: Date,
-    default: new Date(),
+    default: Date.now,
   },
   updatedAt: {
     type: Date,
-    default: new Date(),
+    default: Date.now,
   },
   isDeleted: {
     type: Boolean,
     default: false,
   },
+  coverImage: {
+    type: String,
+    default: '',
+  },
+});
+
+bookSchema.pre('save', function (next) {
+  this.updatedAt = Date.now();
+  next();
 });
 
 export default mongoose.model('book', bookSchema);
