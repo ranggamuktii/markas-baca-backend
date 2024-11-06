@@ -1,12 +1,10 @@
 import express from 'express';
-import { getAllBorrowed, getBorrowedById, createBorrowed, updateBorrowed, deleteBorrowed } from '../controllers/borrowedController.js';
+import { getAllBorrowed, createBorrowed, returnBorrowedBook } from '../controllers/borrowedController.js';
 
 const router = express.Router();
 
-router.get('/', getAllBorrowed);
-router.get('/:id', getBorrowedById);
-router.post('/', createBorrowed);
-router.put('/:id', updateBorrowed);
-router.delete('/:id', deleteBorrowed);
+router.post('/borrow/book', createBorrowed);
+router.get('/borrow/book/list', getAllBorrowed);
+router.post('/borrow/book/return', returnBorrowedBook);
 
 export default router;
