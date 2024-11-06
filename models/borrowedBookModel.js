@@ -22,6 +22,24 @@ const borrowedSchema = new mongoose.Schema({
   returnedAt: {
     type: Date,
   },
+  fine: {
+    type: Number,
+    default: 0,
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+borrowedSchema.methods.calculateFine = function () {
+  if (this.returnedAt && this.returnedAt > this.expectedReturnedAt) {
+    const delayInDays = Math.ceil((this.returnedAt - this.expectedReturnedAt) / (1000 * 60 * 60 * 24));
+    const finePerDay = 5000;
+    this.fine = delayInDays * finePerDay;
+  } else {
+    this.fine = 0;
+  }
+};
 
 export default mongoose.model('borrowed', borrowedSchema);

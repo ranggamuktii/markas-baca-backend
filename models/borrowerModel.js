@@ -23,4 +23,9 @@ const borrowerSchema = new mongoose.Schema({
   },
 });
 
+borrowerSchema.pre('save', function (next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
 export default mongoose.model('borrower', borrowerSchema);
