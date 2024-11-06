@@ -33,10 +33,10 @@ export const addCategory = async (req, res) => {
 
 export const updateCategory = async (req, res) => {
   try {
-    const updatedCategory = await Category.findByIdAndUpdate(req.params.id, req.body);
+    const updatedCategory = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
     if (!updatedCategory) {
-      return res.status(404).json({ success: false, message: 'Category not found' });
+      return res.status(404).json({ message: 'Category not found' });
     }
 
     res.status(200).json(updatedCategory);
