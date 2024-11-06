@@ -3,10 +3,10 @@ import { getBorrowers, getBorrowerById, addBorrower, updateBorrower, deleteBorro
 
 const router = express.Router();
 
-router.get('/', getBorrowers);
-router.get('/:id', getBorrowerById);
-router.post('/', addBorrower);
-router.put('/:id', updateBorrower);
-router.delete('/:id', deleteBorrower);
+router.get('/borrowers', getBorrowers);
+router.get('/borrower/:id', getBorrowerById);
+router.post('/borrower', addBorrower);
+router.put('/borrower/:id', updateBorrower);
+router.delete('/borrower/:id', deleteBorrower);
 
 export default router;
